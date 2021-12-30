@@ -16,10 +16,14 @@ const Home: NextPage = () => {
   const secondPokemon = trpc.useQuery(["get-pokemon-by-id", {
     id: secondId
   }])
+  const voteMutation = trpc.useMutation(["cast-vote"])
 
   const voteForHottest = ( selected: number) => {
     //todo fire mutation to persist changes
-
+    selected === firstId ? 
+      voteMutation.mutate({ votedFor: firstId, votedAgainst: secondId}) :
+      voteMutation.mutate({ votedFor: secondId, votedAgainst: firstId})
+     
     setIds(getOptionsToVote())
   }
 
