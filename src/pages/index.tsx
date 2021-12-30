@@ -31,7 +31,7 @@ const Home: NextPage = () => {
     <div className="h-screen w-screen flex flex-col justify-center items-center relative">
       <div className="text-2xl text-center">Which Pokemon is Hotter?</div>
       <div className="p-3"/>
-      <div className="p-8 flex justify-between items-center max-w-2xl flex-col">
+      <div className="p-8 flex justify-between items-center max-w-2xl flex-col md:flex-row">
         {!firstPokemon.isLoading && firstPokemon.data
           && !secondPokemon.isLoading && secondPokemon.data
           && (
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
                 pokemon={firstPokemon.data}
                 vote={() => voteForHottest(firstId)}
               />
-              <div className="p-8">vs</div>
+              <div className="p-8 text-xl">vs</div>
               <PokemonListing 
                 pokemon={secondPokemon.data}
                 vote={() => voteForHottest(secondId)}
@@ -59,7 +59,7 @@ type PokemonFromServer = inferQueryResponse<"get-pokemon-by-id">
 const PokemonListing: FC<{pokemon: PokemonFromServer, vote: () => void}> = (props) => {
 
   return(
-    <div className="w-44 h-44 flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <img className="w-full"src={props.pokemon.sprites.front_default || undefined} />
       <div className="text-xl text-center capitalize">{props?.pokemon.name}</div>
       <button className={btn} onClick={() => props.vote()}>hotter</button>
