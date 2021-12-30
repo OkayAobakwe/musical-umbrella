@@ -28,10 +28,10 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
+    <div className="h-screen w-screen flex flex-col justify-center items-center relative">
       <div className="text-2xl text-center">Which Pokemon is Hotter?</div>
       <div className="p-3"/>
-      <div className="p-8 flex justify-between items-center max-w-2xl">
+      <div className="p-8 flex justify-between items-center max-w-2xl flex-col">
         {!firstPokemon.isLoading && firstPokemon.data
           && !secondPokemon.isLoading && secondPokemon.data
           && (
