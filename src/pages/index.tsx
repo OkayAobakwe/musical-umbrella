@@ -3,6 +3,7 @@ import { getOptionsToVote } from '@/utils/getRandomPokemon'
 import { trpc } from '@/utils/trpc'
 import type { NextPage } from 'next'
 import { inferQueryResponse } from './api/trpc/[trpc]'
+import Image from 'next/image'
 
 const btn =
   "text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-800"
@@ -60,7 +61,13 @@ const PokemonListing: FC<{pokemon: PokemonFromServer, vote: () => void}> = (prop
 
   return(
     <div className="flex flex-col items-center">
-      <img className="w-full"src={props.pokemon.sprites.front_default || undefined} />
+      <Image 
+        className="w-full" 
+        src={props.pokemon.sprites.front_default as any} 
+        width={156} 
+        height={156}
+        layout="fixed"
+      />
       <div className="text-xl text-center capitalize">{props?.pokemon.name}</div>
       <button className={btn} onClick={() => props.vote()}>hotter</button>
     </div>
