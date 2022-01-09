@@ -51,6 +51,9 @@ const Home: NextPage = () => {
         }
         <div className="p-4"/>
       </div>
+      <div className='absolute bottom-0 w-full text-xl text-center'>
+        <a href="https://github.com/OkayAobakwe/musical-umbrella">Github</a>
+      </div>
     </div>
   )
 }
