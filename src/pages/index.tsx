@@ -30,29 +30,33 @@ const Home: NextPage = () => {
     setIds(getOptionsToVote())
   }
 
+  const dataLoaded = 
+    !firstPokemon.isLoading &&
+    firstPokemon.data && 
+    !secondPokemon.isLoading &&
+    secondPokemon.data
+
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center relative">
       <div className="text-2xl text-center">Which Pokemon is Hotter?</div>
       <div className="p-3"/>
       <div className="p-8 flex justify-between items-center max-w-2xl flex-col md:flex-row">
-        {!firstPokemon.isLoading && firstPokemon.data
-          && !secondPokemon.isLoading && secondPokemon.data
-          && (
-            <>
-              <PokemonListing
-                pokemon={firstPokemon.data}
-                vote={() => voteForHottest(firstId)}
+        {dataLoaded &&(
+          <>
+            <PokemonListing
+              pokemon={firstPokemon.data}
+              vote={() => voteForHottest(firstId)}
+            />
+            <div className="p-8 text-xl">vs</div>
+            <PokemonListing 
+              pokemon={secondPokemon.data}
+              vote={() => voteForHottest(secondId)}
               />
-              <div className="p-8 text-xl">vs</div>
-              <PokemonListing 
-                pokemon={secondPokemon.data}
-                vote={() => voteForHottest(secondId)}
-                />
-            </>
-          )
-        }
+          </>
+        )}
         <div className="p-4"/>
       </div>
+      {!dataLoaded && (<img src="/circles.svg" className="w-48"/>)}
       <div className='absolute bottom-0 w-full text-xl text-center'>
         <a href="https://github.com/OkayAobakwe/musical-umbrella">Github</a> {" | "}
         <Link href="/results"><a>Results</a></Link>
