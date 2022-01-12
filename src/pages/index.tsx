@@ -66,7 +66,7 @@ const PokemonListing: FC<{pokemon: PokemonFromServer, vote: () => void}> = (prop
     <div className="flex flex-col items-center">
       <Image 
         className="w-full" 
-        src={props.pokemon.sprites.front_default as any} 
+        src={props.pokemon.spriteUrl} 
         width={156} 
         height={156}
         layout="fixed"
